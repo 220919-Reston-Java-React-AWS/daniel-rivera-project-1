@@ -1,8 +1,9 @@
 # Default ignored files
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 /vcs.xml
 /modules.xml
 /misc.xml
 /daniel-rivera-project-1.iml
-
+.idea/
+out/
