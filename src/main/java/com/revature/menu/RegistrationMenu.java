@@ -1,6 +1,7 @@
-package src.menu;
+package com.revature.menu;
 
-import src.Main;
+import com.revature.Main;
+import com.revature.model.UserAccount;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,8 @@ public class RegistrationMenu {
         String[] menuOptions = new String[]{"1", "2"};
         List<String> menuList = new ArrayList<>(Arrays.asList(menuOptions));
 
-        String menuChoice; // user input
+        // user input
+        String menuChoice;
 
         while(true){
             // get user input
@@ -43,6 +45,7 @@ public class RegistrationMenu {
         // Invoke decided menuChoice from User
         switch(menuChoice){
             case "1":   // go to Register Account Prompt
+                registerAccountPrompt();
                 break;
             case "2":   // return to the Main Menu of application
                 //exit message
@@ -51,5 +54,32 @@ public class RegistrationMenu {
                 Main.mainMenuObject.display();  // Using MainMenu mainMenuObject from src.Main
                 break;
         }
+    }
+
+    // process method for creating a new User Account
+    public void registerAccountPrompt(){
+        String username, password;
+        // ask for a username to be used to log in
+        System.out.println("Enter the username to register with:");
+        username = Main.sc.nextLine();
+        // ask for a password to be used to log in
+        System.out.println("Enter the password to register with");
+        password = Main.sc.nextLine();
+
+        // create User Account
+        UserAccount newUser = new UserAccount(username, password);
+
+        // System.out.println(newUser.toString());
+
+        // check that username or password have no spaces
+        // check that username is not already registered
+        // add (register) the new account
+        try {
+            Main.authService.register(newUser);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            display();
+        }
+        Main.mainMenuObject.display();
     }
 }

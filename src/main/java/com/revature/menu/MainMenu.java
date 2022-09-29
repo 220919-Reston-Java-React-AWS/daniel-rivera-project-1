@@ -1,6 +1,6 @@
-package src.menu;
+package com.revature.menu;
 
-import src.Main;    // to use the Scanner sc object made in src.Main
+import com.revature.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,8 +26,10 @@ public class MainMenu {
         String[] menuOptions = new String[]{"1", "2", "3"};
         List<String> menuList = new ArrayList<>(Arrays.asList(menuOptions));
 
-        String menuChoice; // user input
+        // user input
+        String menuChoice;
 
+        // loop for valid user choice
         while(true){
             // get user input
             System.out.print("\nInput Choice: ");

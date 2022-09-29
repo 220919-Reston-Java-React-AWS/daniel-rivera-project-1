@@ -7,3 +7,5 @@
 /daniel-rivera-project-1.iml
 .idea/
 out/
+target/
+pom.xml
