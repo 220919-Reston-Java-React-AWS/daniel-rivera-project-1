@@ -1,7 +1,6 @@
 import com.revature.exception.InvalidAccountLoginException;
 import com.revature.exception.InvalidRegisterAccountException;
 import com.revature.model.AppUserAccount;
-import com.revature.repository.AppTicketRepository;
 import com.revature.repository.AppUsersRepository;
 import com.revature.service.AppAuthService;
 import org.junit.jupiter.api.Assertions;
