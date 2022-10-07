@@ -1,4 +1,4 @@
-package com.revature.model;
+package com.revature.phase1;
 
 public class UserAccount {
     // user login information

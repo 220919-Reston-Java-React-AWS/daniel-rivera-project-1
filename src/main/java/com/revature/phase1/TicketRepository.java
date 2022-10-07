@@ -1,6 +1,4 @@
-package com.revature.repository;
-
-import com.revature.model.ReimbursementTicket;
+package com.revature.phase1;
 
 import java.util.*;
 

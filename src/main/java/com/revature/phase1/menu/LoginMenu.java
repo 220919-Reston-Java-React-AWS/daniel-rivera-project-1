@@ -1,7 +1,6 @@
-package com.revature.menu;
+package com.revature.phase1.menu;
 
-import com.revature.Main;
-import com.revature.service.AuthService;
+import com.revature.phase1.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;

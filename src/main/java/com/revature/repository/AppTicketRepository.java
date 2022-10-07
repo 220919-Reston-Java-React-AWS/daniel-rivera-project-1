@@ -1,7 +1,6 @@
 package com.revature.repository;
 
 import com.revature.model.AppReimbursementTicket;
-import com.revature.model.ReimbursementTicket;
 
 import java.sql.*;
 import java.util.ArrayList;

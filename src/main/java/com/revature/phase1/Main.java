@@ -1,9 +1,6 @@
-package com.revature;
+package com.revature.phase1;
 
-import com.revature.menu.MainMenu;
-import com.revature.repository.TicketRepository;
-import com.revature.repository.UserRepository;
-import com.revature.service.AuthService;
+import com.revature.phase1.menu.MainMenu;
 
 import java.util.Scanner;
 

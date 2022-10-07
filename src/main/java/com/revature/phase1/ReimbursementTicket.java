@@ -1,4 +1,4 @@
-package com.revature.model;
+package com.revature.phase1;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

@@ -1,11 +1,6 @@
-package com.revature.service;
+package com.revature.phase1;
 
-import com.revature.Main;
-import com.revature.menu.ReimbursementMenu;
-import com.revature.model.ReimbursementTicket;
-import com.revature.model.UserAccount;
-import com.revature.repository.TicketRepository;
-import com.revature.repository.UserRepository;
+import com.revature.phase1.menu.ReimbursementMenu;
 
 import java.util.List;
 
