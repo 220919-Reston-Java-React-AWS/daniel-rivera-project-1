@@ -58,33 +58,55 @@ public class ReimbursementTicketController {
 
         // pending HTTP request - to enter a user account
         // for Manager users
-        app.get("tickets/pending", (ctx) ->{
+        app.get("tickets/list-status={ticketStatus}", (ctx) ->{
             // get the login user
             HttpSession httpSession = ctx.req.getSession();
 
             //return user attribute
             AppUserAccount user = (AppUserAccount) httpSession.getAttribute("user");
 
+            // get the ticket status to list from the URI
+            int uriTicketStatus;
+            switch (ctx.pathParam("ticketStatus")){
+                case "pending":
+                    uriTicketStatus = 1;
+                    break;
+                case "approved":
+                    uriTicketStatus = 2;
+                    break;
+                case "denied":
+                    uriTicketStatus = 3;
+                    break;
+                default:
+                    uriTicketStatus = 0;
+            }
+
             // check if logged in
             if(user != null) {
-                // if the user is a Manager
-                if (user.getRoleId() == 2) {
-                    // 1 is PENDING, 2 is APPROVED. 3 is DENIED
-                    List<AppReimbursementTicket> assignmentList = appTicketService.getAllTicketsWithStatus(1);
-                    ctx.json(assignmentList);
-
-                }
-                // if the user is a Employee
-                else if (user.getRoleId() == 1){
-                    int employeeId = user.getId();
-
-                    // 1 is PENDING, 2 is APPROVED. 3 is DENIED
-                    List<AppReimbursementTicket> assignments = appTicketService.getAllTicketsWithStatusForEmployee(employeeId, 1);
-                    ctx.json(assignments);
+                // check that a valid ticket status is in the uri
+                if(uriTicketStatus == 0){
+                    ctx.result("You are logged in, but the URI is incorrect. Status should equal: pending, approved, or denied");
+                    ctx.status(401);
                 }
                 else {
-                    ctx.result("You are logged in, but not a Employee or Manager");
-                    ctx.status(401);
+                    // if the user is a Manager
+                    if (user.getRoleId() == 2) {
+                        // 1 is PENDING, 2 is APPROVED. 3 is DENIED
+                        List<AppReimbursementTicket> assignmentList = appTicketService.getAllTicketsWithStatus(uriTicketStatus);
+                        ctx.json(assignmentList);
+
+                    }
+                    // if the user is a Employee
+                    else if (user.getRoleId() == 1) {
+                        int employeeId = user.getId();
+
+                        // 1 is PENDING, 2 is APPROVED. 3 is DENIED
+                        List<AppReimbursementTicket> assignments = appTicketService.getAllTicketsWithStatusForEmployee(employeeId, uriTicketStatus);
+                        ctx.json(assignments);
+                    } else {
+                        ctx.result("You are logged in, but not a Employee or Manager");
+                        ctx.status(401);
+                    }
                 }
             }
             // else return "error" status
