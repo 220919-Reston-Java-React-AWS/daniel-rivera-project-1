@@ -20,7 +20,6 @@ public class AuthController {
 
             // Try creating the new Account
             try{
-                //
                 appAuthService.register(registration);
 
                 ctx.result("Account successfully created.");
