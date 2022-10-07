@@ -43,8 +43,6 @@ public class AppUsersRepository {
             pstmt.setString(1, username); // the login account username
             pstmt.setString(2, password); // the login account password
 
-//            System.out.println(pstmt.toString());
-
             ResultSet rs = pstmt.executeQuery(); // represents a temporary table that contains all data we have queried for
 
             //rs.next(); - return a boolean indicating whether there is a record or not for the next row AND iterates to it
@@ -58,9 +56,9 @@ public class AppUsersRepository {
 
                 return new AppUserAccount(id, un, pw, firstName, lastName, roleId);
             }
-            else {
-                return null;
-            }
+
+            return null;
+
         }
     }
 
@@ -77,17 +75,15 @@ public class AppUsersRepository {
 
             pstmt.setString(1, username); // the maybe new account username
 
-//            System.out.println(pstmt.toString());
-
             ResultSet rs = pstmt.executeQuery(); // represents a temporary table that contains all data we have queried for
 
             //rs.next(); - return a boolean indicating whether there is a record or not for the next row AND iterates to it
             if (rs.next()) {
                 return true;
             }
-            else {
-                return false;
-            }
+
+            return false;
+
 
         }
     }

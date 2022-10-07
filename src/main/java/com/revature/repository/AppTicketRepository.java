@@ -14,7 +14,7 @@ public class AppTicketRepository {
             List<AppReimbursementTicket> tickets = new ArrayList<>();
 
             // the SQL for all tickets
-            String sql = "SELECT * FROM tickets;";
+            String sql = "SELECT * FROM tickets ORDER BY id ASC;";
 
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -43,7 +43,7 @@ public class AppTicketRepository {
             List<AppReimbursementTicket> tickets = new ArrayList<>();
 
             // the SQL for all tickets specifically by employee
-            String sql = "SELECT * FROM tickets WHERE employee_id = ?;";
+            String sql = "SELECT * FROM tickets WHERE employee_id = ? ORDER BY id ASC;";
 
             // create Prepared Statement object using a predefined template (? are used as placeholder for values)
             PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -76,7 +76,7 @@ public class AppTicketRepository {
             List<AppReimbursementTicket> tickets = new ArrayList<>();
 
             // the SQL for all tickets
-            String sql = "SELECT * FROM tickets WHERE status_name = ?;";
+            String sql = "SELECT * FROM tickets WHERE status_name = ? ORDER BY id ASC;";
 
             // create Prepared Statement object using a predefined template (? are used as placeholder for values)
             PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -109,7 +109,7 @@ public class AppTicketRepository {
             List<AppReimbursementTicket> tickets = new ArrayList<>();
 
             // the SQL for all tickets specifically by employee
-            String sql = "SELECT * FROM tickets WHERE employee_id = ? AND status_name = ?;";
+            String sql = "SELECT * FROM tickets WHERE employee_id = ? AND status_name = ? ORDER BY id ASC;";
 
             // create Prepared Statement object using a predefined template (? are used as placeholder for values)
             PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -171,15 +171,12 @@ public class AppTicketRepository {
 
             pstmt.setInt(1, processTicket.getId()); // the maybe new account username
 
-//            System.out.println(pstmt.toString());
-
             ResultSet rs = pstmt.executeQuery(); // represents a temporary table that contains all data we have queried for
 
             //rs.next(); - return a boolean indicating whether there is a record or not for the next row AND iterates to it
             if (rs.next()) {
                 return true;
             }
-
 
             return false;
 
